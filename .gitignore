@@ -40,8 +40,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-/src/generated/prisma
-
 # local test artifacts
 cookies*.txt
 csrf*.json
@@ -49,3 +47,6 @@ csrf*.json
 bv-*.txt
 bv-*.json
 yt-body.json
+
+.vercel
+.env*
