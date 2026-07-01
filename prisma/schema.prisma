@@ -1,0 +1,354 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ---------------------------------------------------------------------------
+// Enums
+// ---------------------------------------------------------------------------
+
+enum PlanType {
+  FREE
+  STARTER
+  PRO
+  ENTERPRISE
+}
+
+enum ContentSourceType {
+  TEXT
+  URL
+  YOUTUBE
+  PDF
+  AUDIO
+  FILE
+}
+
+enum ContentStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+enum OutputFormat {
+  TWITTER_THREAD
+  LINKEDIN_POST
+  LINKEDIN_ARTICLE
+  INSTAGRAM_CAPTION
+  INSTAGRAM_CAROUSEL
+  FACEBOOK_POST
+  THREADS_POST
+  BLOG_POST
+  SEO_BLOG
+  NEWSLETTER
+  EMAIL_NEWSLETTER
+  YOUTUBE_DESCRIPTION
+  YOUTUBE_CHAPTERS
+  TIKTOK_SCRIPT
+  EMAIL_SEQUENCE
+  SEO_META
+  THREAD_HOOKS
+  CAROUSEL
+  SHORTS_SCRIPT
+  AD_COPY
+  LEAD_MAGNET
+  PINTEREST_PIN
+}
+
+enum OutputStatus {
+  PENDING
+  GENERATING
+  COMPLETED
+  FAILED
+}
+
+enum CreditTransactionType {
+  DEDUCTION
+  GRANT
+  PURCHASE
+  SUBSCRIPTION
+  REFUND
+  BONUS
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  CANCELED
+  PAST_DUE
+  INCOMPLETE
+  TRIALING
+  UNPAID
+}
+
+enum MonetizationStatus {
+  DRAFT
+  ACTIVE
+  PAUSED
+  ARCHIVED
+}
+
+enum ScheduledPostStatus {
+  SCHEDULED
+  POSTED
+  SKIPPED
+}
+
+// ---------------------------------------------------------------------------
+// Auth.js models
+// ---------------------------------------------------------------------------
+
+model User {
+  id                  String    @id @default(cuid())
+  name                String?
+  email               String?   @unique
+  emailVerified       DateTime?
+  image               String?
+  password            String?
+  credits             Int       @default(50)
+  plan                PlanType  @default(FREE)
+  lemonSqueezyCustomerId String? @unique
+  onboardingCompleted Boolean   @default(false)
+  onboardingStep      Int       @default(0)
+  companyName         String?
+  industry            String?
+  contentGoals        String[]  @default([])
+  defaultTone         String?
+  defaultPlatforms    String[]  @default([])
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+
+  accounts             Account[]
+  sessions             Session[]
+  contents             Content[]
+  repurposedOutputs    RepurposedOutput[]
+  creditTransactions   CreditTransaction[]
+  subscription         Subscription?
+  usageLogs            UsageLog[]
+  monetizationProjects MonetizationProject[]
+  scheduledPosts       ScheduledPost[]
+  brandVoice           BrandVoice?
+
+  @@index([lemonSqueezyCustomerId])
+  @@index([plan])
+}
+
+model BrandVoice {
+  id           String    @id @default(cuid())
+  userId       String    @unique
+  name         String    @default("My Brand Voice")
+  voiceProfile String?   @db.Text
+  examples     Json      @default("[]")
+  isEnabled    Boolean   @default(true)
+  trainedAt    DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// ---------------------------------------------------------------------------
+// Application models
+// ---------------------------------------------------------------------------
+
+model Content {
+  id          String            @id @default(cuid())
+  userId      String
+  title       String
+  sourceType  ContentSourceType
+  sourceUrl   String?
+  rawContent  String            @db.Text
+  summary     String?           @db.Text
+  wordCount   Int               @default(0)
+  metadata    Json?
+  status      ContentStatus     @default(PENDING)
+  creditsUsed Int               @default(0)
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  user   User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  outputs RepurposedOutput[]
+
+  @@index([userId])
+  @@index([userId, createdAt])
+  @@index([status])
+}
+
+model RepurposedOutput {
+  id          String       @id @default(cuid())
+  contentId   String
+  userId      String?
+  format      String
+  output      String       @db.Text
+  tokensUsed  Int?
+  model       String?
+  metadata    Json?
+  status      OutputStatus @default(PENDING)
+  creditsUsed Int          @default(0)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  content Content @relation(fields: [contentId], references: [id], onDelete: Cascade)
+  user    User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([contentId])
+  @@index([userId])
+  @@index([userId, format])
+  @@index([status])
+}
+
+model CreditTransaction {
+  id          String                @id @default(cuid())
+  userId      String
+  amount      Int
+  balance     Int
+  type        CreditTransactionType
+  description String
+  metadata    Json?
+  createdAt   DateTime              @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([userId, createdAt])
+  @@index([type])
+}
+
+model Subscription {
+  id                         String             @id @default(cuid())
+  userId                     String             @unique
+  lemonSqueezySubscriptionId String             @unique
+  lemonSqueezyVariantId      String
+  lemonSqueezyCustomerId     String?
+  customerPortalUrl          String?
+  status                     SubscriptionStatus @default(ACTIVE)
+  currentPeriodStart         DateTime
+  currentPeriodEnd           DateTime
+  cancelAtPeriodEnd          Boolean            @default(false)
+  createdAt                  DateTime           @default(now())
+  updatedAt                  DateTime           @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([lemonSqueezySubscriptionId])
+  @@index([status])
+}
+
+model UsageLog {
+  id          String   @id @default(cuid())
+  userId      String
+  action      String
+  creditsUsed Int      @default(0)
+  metadata    Json?
+  createdAt   DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([userId, createdAt])
+  @@index([action])
+}
+
+model MonetizationProject {
+  id             String             @id @default(cuid())
+  userId         String
+  name           String
+  description    String?            @db.Text
+  niche          String?
+  targetAudience String?
+  revenueGoal    Float?
+  status         MonetizationStatus @default(DRAFT)
+  metadata       Json?
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
+
+  user   User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  assets MonetizationAsset[]
+
+  @@index([userId])
+  @@index([userId, status])
+}
+
+model MonetizationAsset {
+  id          String   @id @default(cuid())
+  projectId   String
+  userId      String
+  type        String
+  title       String?
+  output      String   @db.Text
+  context     Json?
+  creditsUsed Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  project MonetizationProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId])
+  @@index([userId])
+  @@index([userId, type])
+}
+
+model ScheduledPost {
+  id          String               @id @default(cuid())
+  userId      String
+  title       String
+  content     String               @db.Text
+  platform    String
+  scheduledAt DateTime
+  status      ScheduledPostStatus  @default(SCHEDULED)
+  outputId    String?
+  contentId   String?
+  notes       String?
+  createdAt   DateTime             @default(now())
+  updatedAt   DateTime             @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([userId, scheduledAt])
+  @@index([userId, status])
+}
