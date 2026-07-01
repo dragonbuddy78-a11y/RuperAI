@@ -1,6 +1,0 @@
-{
-  "name": "@repurai/generated-prisma",
-  "type": "module",
-  "main": "./index.ts",
-  "types": "./index.ts"
-}
