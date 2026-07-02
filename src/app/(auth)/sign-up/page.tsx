@@ -66,7 +66,7 @@ export default function SignUpPage() {
         return;
       }
 
-      toast.success("Welcome to RepurAI! 50 free credits added.");
+      toast.success("Welcome to RepurAI! Your account is ready.");
       router.push("/onboarding");
       router.refresh();
     } catch {
@@ -131,6 +131,17 @@ export default function SignUpPage() {
           <Button type="submit" className="w-full" disabled={loading}>
             {loading ? "Creating account..." : "Create account"}
           </Button>
+          <p className="text-center text-xs leading-relaxed text-muted-foreground">
+            By creating an account, you agree to our{" "}
+            <Link href="/terms" className="text-primary hover:underline">
+              Terms of Service
+            </Link>{" "}
+            and{" "}
+            <Link href="/privacy" className="text-primary hover:underline">
+              Privacy Policy
+            </Link>
+            .
+          </p>
         </form>
 
         <p className="text-center text-sm text-muted-foreground">

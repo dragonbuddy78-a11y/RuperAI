@@ -9,15 +9,16 @@ const footerLinks = {
     { href: "/sign-up", label: "Get Started" },
   ],
   Company: [
-    { href: "#", label: "About" },
-    { href: "#", label: "Blog" },
-    { href: "#", label: "Careers" },
-    { href: "#", label: "Contact" },
+    { href: "/contact", label: "Contact" },
+    { href: "/pricing", label: "Pricing" },
+    { href: "/sign-up", label: "Open Beta" },
   ],
   Legal: [
-    { href: "#", label: "Privacy" },
-    { href: "#", label: "Terms" },
-    { href: "#", label: "Security" },
+    { href: "/privacy", label: "Privacy Policy" },
+    { href: "/terms", label: "Terms of Service" },
+    { href: "/refund", label: "Refund Policy" },
+    { href: "/cookies", label: "Cookie Policy" },
+    { href: "/security", label: "Security" },
   ],
 };
 
