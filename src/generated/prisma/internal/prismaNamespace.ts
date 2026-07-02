@@ -1434,6 +1434,8 @@ export const UserScalarFieldEnum = {
   contentGoals: 'contentGoals',
   defaultTone: 'defaultTone',
   defaultPlatforms: 'defaultPlatforms',
+  ayrshareProfileKey: 'ayrshareProfileKey',
+  ayrshareRefId: 'ayrshareRefId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1618,6 +1620,8 @@ export const ScheduledPostScalarFieldEnum = {
   outputId: 'outputId',
   contentId: 'contentId',
   notes: 'notes',
+  ayrsharePostId: 'ayrsharePostId',
+  publishError: 'publishError',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

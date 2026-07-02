@@ -35,6 +35,8 @@ export type ScheduledPostMinAggregateOutputType = {
   outputId: string | null
   contentId: string | null
   notes: string | null
+  ayrsharePostId: string | null
+  publishError: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -50,6 +52,8 @@ export type ScheduledPostMaxAggregateOutputType = {
   outputId: string | null
   contentId: string | null
   notes: string | null
+  ayrsharePostId: string | null
+  publishError: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -65,6 +69,8 @@ export type ScheduledPostCountAggregateOutputType = {
   outputId: number
   contentId: number
   notes: number
+  ayrsharePostId: number
+  publishError: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -82,6 +88,8 @@ export type ScheduledPostMinAggregateInputType = {
   outputId?: true
   contentId?: true
   notes?: true
+  ayrsharePostId?: true
+  publishError?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -97,6 +105,8 @@ export type ScheduledPostMaxAggregateInputType = {
   outputId?: true
   contentId?: true
   notes?: true
+  ayrsharePostId?: true
+  publishError?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -112,6 +122,8 @@ export type ScheduledPostCountAggregateInputType = {
   outputId?: true
   contentId?: true
   notes?: true
+  ayrsharePostId?: true
+  publishError?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -200,6 +212,8 @@ export type ScheduledPostGroupByOutputType = {
   outputId: string | null
   contentId: string | null
   notes: string | null
+  ayrsharePostId: string | null
+  publishError: string | null
   createdAt: Date
   updatedAt: Date
   _count: ScheduledPostCountAggregateOutputType | null
@@ -236,6 +250,8 @@ export type ScheduledPostWhereInput = {
   outputId?: Prisma.StringNullableFilter<"ScheduledPost"> | string | null
   contentId?: Prisma.StringNullableFilter<"ScheduledPost"> | string | null
   notes?: Prisma.StringNullableFilter<"ScheduledPost"> | string | null
+  ayrsharePostId?: Prisma.StringNullableFilter<"ScheduledPost"> | string | null
+  publishError?: Prisma.StringNullableFilter<"ScheduledPost"> | string | null
   createdAt?: Prisma.DateTimeFilter<"ScheduledPost"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ScheduledPost"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -252,6 +268,8 @@ export type ScheduledPostOrderByWithRelationInput = {
   outputId?: Prisma.SortOrderInput | Prisma.SortOrder
   contentId?: Prisma.SortOrderInput | Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
+  ayrsharePostId?: Prisma.SortOrderInput | Prisma.SortOrder
+  publishError?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
@@ -271,6 +289,8 @@ export type ScheduledPostWhereUniqueInput = Prisma.AtLeast<{
   outputId?: Prisma.StringNullableFilter<"ScheduledPost"> | string | null
   contentId?: Prisma.StringNullableFilter<"ScheduledPost"> | string | null
   notes?: Prisma.StringNullableFilter<"ScheduledPost"> | string | null
+  ayrsharePostId?: Prisma.StringNullableFilter<"ScheduledPost"> | string | null
+  publishError?: Prisma.StringNullableFilter<"ScheduledPost"> | string | null
   createdAt?: Prisma.DateTimeFilter<"ScheduledPost"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ScheduledPost"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -287,6 +307,8 @@ export type ScheduledPostOrderByWithAggregationInput = {
   outputId?: Prisma.SortOrderInput | Prisma.SortOrder
   contentId?: Prisma.SortOrderInput | Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
+  ayrsharePostId?: Prisma.SortOrderInput | Prisma.SortOrder
+  publishError?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.ScheduledPostCountOrderByAggregateInput
@@ -308,6 +330,8 @@ export type ScheduledPostScalarWhereWithAggregatesInput = {
   outputId?: Prisma.StringNullableWithAggregatesFilter<"ScheduledPost"> | string | null
   contentId?: Prisma.StringNullableWithAggregatesFilter<"ScheduledPost"> | string | null
   notes?: Prisma.StringNullableWithAggregatesFilter<"ScheduledPost"> | string | null
+  ayrsharePostId?: Prisma.StringNullableWithAggregatesFilter<"ScheduledPost"> | string | null
+  publishError?: Prisma.StringNullableWithAggregatesFilter<"ScheduledPost"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"ScheduledPost"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"ScheduledPost"> | Date | string
 }
@@ -322,6 +346,8 @@ export type ScheduledPostCreateInput = {
   outputId?: string | null
   contentId?: string | null
   notes?: string | null
+  ayrsharePostId?: string | null
+  publishError?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutScheduledPostsInput
@@ -338,6 +364,8 @@ export type ScheduledPostUncheckedCreateInput = {
   outputId?: string | null
   contentId?: string | null
   notes?: string | null
+  ayrsharePostId?: string | null
+  publishError?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -352,6 +380,8 @@ export type ScheduledPostUpdateInput = {
   outputId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ayrsharePostId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishError?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutScheduledPostsNestedInput
@@ -368,6 +398,8 @@ export type ScheduledPostUncheckedUpdateInput = {
   outputId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ayrsharePostId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishError?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -383,6 +415,8 @@ export type ScheduledPostCreateManyInput = {
   outputId?: string | null
   contentId?: string | null
   notes?: string | null
+  ayrsharePostId?: string | null
+  publishError?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -397,6 +431,8 @@ export type ScheduledPostUpdateManyMutationInput = {
   outputId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ayrsharePostId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishError?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -412,6 +448,8 @@ export type ScheduledPostUncheckedUpdateManyInput = {
   outputId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ayrsharePostId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishError?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -437,6 +475,8 @@ export type ScheduledPostCountOrderByAggregateInput = {
   outputId?: Prisma.SortOrder
   contentId?: Prisma.SortOrder
   notes?: Prisma.SortOrder
+  ayrsharePostId?: Prisma.SortOrder
+  publishError?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -452,6 +492,8 @@ export type ScheduledPostMaxOrderByAggregateInput = {
   outputId?: Prisma.SortOrder
   contentId?: Prisma.SortOrder
   notes?: Prisma.SortOrder
+  ayrsharePostId?: Prisma.SortOrder
+  publishError?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -467,6 +509,8 @@ export type ScheduledPostMinOrderByAggregateInput = {
   outputId?: Prisma.SortOrder
   contentId?: Prisma.SortOrder
   notes?: Prisma.SortOrder
+  ayrsharePostId?: Prisma.SortOrder
+  publishError?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -527,6 +571,8 @@ export type ScheduledPostCreateWithoutUserInput = {
   outputId?: string | null
   contentId?: string | null
   notes?: string | null
+  ayrsharePostId?: string | null
+  publishError?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -541,6 +587,8 @@ export type ScheduledPostUncheckedCreateWithoutUserInput = {
   outputId?: string | null
   contentId?: string | null
   notes?: string | null
+  ayrsharePostId?: string | null
+  publishError?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -585,6 +633,8 @@ export type ScheduledPostScalarWhereInput = {
   outputId?: Prisma.StringNullableFilter<"ScheduledPost"> | string | null
   contentId?: Prisma.StringNullableFilter<"ScheduledPost"> | string | null
   notes?: Prisma.StringNullableFilter<"ScheduledPost"> | string | null
+  ayrsharePostId?: Prisma.StringNullableFilter<"ScheduledPost"> | string | null
+  publishError?: Prisma.StringNullableFilter<"ScheduledPost"> | string | null
   createdAt?: Prisma.DateTimeFilter<"ScheduledPost"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ScheduledPost"> | Date | string
 }
@@ -599,6 +649,8 @@ export type ScheduledPostCreateManyUserInput = {
   outputId?: string | null
   contentId?: string | null
   notes?: string | null
+  ayrsharePostId?: string | null
+  publishError?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -613,6 +665,8 @@ export type ScheduledPostUpdateWithoutUserInput = {
   outputId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ayrsharePostId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishError?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -627,6 +681,8 @@ export type ScheduledPostUncheckedUpdateWithoutUserInput = {
   outputId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ayrsharePostId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishError?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -641,6 +697,8 @@ export type ScheduledPostUncheckedUpdateManyWithoutUserInput = {
   outputId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ayrsharePostId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishError?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -658,6 +716,8 @@ export type ScheduledPostSelect<ExtArgs extends runtime.Types.Extensions.Interna
   outputId?: boolean
   contentId?: boolean
   notes?: boolean
+  ayrsharePostId?: boolean
+  publishError?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -674,6 +734,8 @@ export type ScheduledPostSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   outputId?: boolean
   contentId?: boolean
   notes?: boolean
+  ayrsharePostId?: boolean
+  publishError?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -690,6 +752,8 @@ export type ScheduledPostSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   outputId?: boolean
   contentId?: boolean
   notes?: boolean
+  ayrsharePostId?: boolean
+  publishError?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -706,11 +770,13 @@ export type ScheduledPostSelectScalar = {
   outputId?: boolean
   contentId?: boolean
   notes?: boolean
+  ayrsharePostId?: boolean
+  publishError?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ScheduledPostOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "title" | "content" | "platform" | "scheduledAt" | "status" | "outputId" | "contentId" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["scheduledPost"]>
+export type ScheduledPostOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "title" | "content" | "platform" | "scheduledAt" | "status" | "outputId" | "contentId" | "notes" | "ayrsharePostId" | "publishError" | "createdAt" | "updatedAt", ExtArgs["result"]["scheduledPost"]>
 export type ScheduledPostInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
@@ -737,6 +803,8 @@ export type $ScheduledPostPayload<ExtArgs extends runtime.Types.Extensions.Inter
     outputId: string | null
     contentId: string | null
     notes: string | null
+    ayrsharePostId: string | null
+    publishError: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["scheduledPost"]>
@@ -1173,6 +1241,8 @@ export interface ScheduledPostFieldRefs {
   readonly outputId: Prisma.FieldRef<"ScheduledPost", 'String'>
   readonly contentId: Prisma.FieldRef<"ScheduledPost", 'String'>
   readonly notes: Prisma.FieldRef<"ScheduledPost", 'String'>
+  readonly ayrsharePostId: Prisma.FieldRef<"ScheduledPost", 'String'>
+  readonly publishError: Prisma.FieldRef<"ScheduledPost", 'String'>
   readonly createdAt: Prisma.FieldRef<"ScheduledPost", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"ScheduledPost", 'DateTime'>
 }

@@ -51,6 +51,8 @@ export type UserMinAggregateOutputType = {
   companyName: string | null
   industry: string | null
   defaultTone: string | null
+  ayrshareProfileKey: string | null
+  ayrshareRefId: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -70,6 +72,8 @@ export type UserMaxAggregateOutputType = {
   companyName: string | null
   industry: string | null
   defaultTone: string | null
+  ayrshareProfileKey: string | null
+  ayrshareRefId: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -91,6 +95,8 @@ export type UserCountAggregateOutputType = {
   contentGoals: number
   defaultTone: number
   defaultPlatforms: number
+  ayrshareProfileKey: number
+  ayrshareRefId: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -122,6 +128,8 @@ export type UserMinAggregateInputType = {
   companyName?: true
   industry?: true
   defaultTone?: true
+  ayrshareProfileKey?: true
+  ayrshareRefId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -141,6 +149,8 @@ export type UserMaxAggregateInputType = {
   companyName?: true
   industry?: true
   defaultTone?: true
+  ayrshareProfileKey?: true
+  ayrshareRefId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -162,6 +172,8 @@ export type UserCountAggregateInputType = {
   contentGoals?: true
   defaultTone?: true
   defaultPlatforms?: true
+  ayrshareProfileKey?: true
+  ayrshareRefId?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -270,6 +282,8 @@ export type UserGroupByOutputType = {
   contentGoals: string[]
   defaultTone: string | null
   defaultPlatforms: string[]
+  ayrshareProfileKey: string | null
+  ayrshareRefId: string | null
   createdAt: Date
   updatedAt: Date
   _count: UserCountAggregateOutputType | null
@@ -314,6 +328,8 @@ export type UserWhereInput = {
   contentGoals?: Prisma.StringNullableListFilter<"User">
   defaultTone?: Prisma.StringNullableFilter<"User"> | string | null
   defaultPlatforms?: Prisma.StringNullableListFilter<"User">
+  ayrshareProfileKey?: Prisma.StringNullableFilter<"User"> | string | null
+  ayrshareRefId?: Prisma.StringNullableFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   accounts?: Prisma.AccountListRelationFilter
@@ -345,6 +361,8 @@ export type UserOrderByWithRelationInput = {
   contentGoals?: Prisma.SortOrder
   defaultTone?: Prisma.SortOrderInput | Prisma.SortOrder
   defaultPlatforms?: Prisma.SortOrder
+  ayrshareProfileKey?: Prisma.SortOrderInput | Prisma.SortOrder
+  ayrshareRefId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   accounts?: Prisma.AccountOrderByRelationAggregateInput
@@ -363,6 +381,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   id?: string
   email?: string
   lemonSqueezyCustomerId?: string
+  ayrshareProfileKey?: string
   AND?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
@@ -379,6 +398,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   contentGoals?: Prisma.StringNullableListFilter<"User">
   defaultTone?: Prisma.StringNullableFilter<"User"> | string | null
   defaultPlatforms?: Prisma.StringNullableListFilter<"User">
+  ayrshareRefId?: Prisma.StringNullableFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   accounts?: Prisma.AccountListRelationFilter
@@ -391,7 +411,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   monetizationProjects?: Prisma.MonetizationProjectListRelationFilter
   scheduledPosts?: Prisma.ScheduledPostListRelationFilter
   brandVoice?: Prisma.XOR<Prisma.BrandVoiceNullableScalarRelationFilter, Prisma.BrandVoiceWhereInput> | null
-}, "id" | "email" | "lemonSqueezyCustomerId">
+}, "id" | "email" | "lemonSqueezyCustomerId" | "ayrshareProfileKey">
 
 export type UserOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -410,6 +430,8 @@ export type UserOrderByWithAggregationInput = {
   contentGoals?: Prisma.SortOrder
   defaultTone?: Prisma.SortOrderInput | Prisma.SortOrder
   defaultPlatforms?: Prisma.SortOrder
+  ayrshareProfileKey?: Prisma.SortOrderInput | Prisma.SortOrder
+  ayrshareRefId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
@@ -439,6 +461,8 @@ export type UserScalarWhereWithAggregatesInput = {
   contentGoals?: Prisma.StringNullableListFilter<"User">
   defaultTone?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   defaultPlatforms?: Prisma.StringNullableListFilter<"User">
+  ayrshareProfileKey?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  ayrshareRefId?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
 }
@@ -460,6 +484,8 @@ export type UserCreateInput = {
   contentGoals?: Prisma.UserCreatecontentGoalsInput | string[]
   defaultTone?: string | null
   defaultPlatforms?: Prisma.UserCreatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: string | null
+  ayrshareRefId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
@@ -491,6 +517,8 @@ export type UserUncheckedCreateInput = {
   contentGoals?: Prisma.UserCreatecontentGoalsInput | string[]
   defaultTone?: string | null
   defaultPlatforms?: Prisma.UserCreatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: string | null
+  ayrshareRefId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
@@ -522,6 +550,8 @@ export type UserUpdateInput = {
   contentGoals?: Prisma.UserUpdatecontentGoalsInput | string[]
   defaultTone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   defaultPlatforms?: Prisma.UserUpdatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ayrshareRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
@@ -553,6 +583,8 @@ export type UserUncheckedUpdateInput = {
   contentGoals?: Prisma.UserUpdatecontentGoalsInput | string[]
   defaultTone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   defaultPlatforms?: Prisma.UserUpdatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ayrshareRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -584,6 +616,8 @@ export type UserCreateManyInput = {
   contentGoals?: Prisma.UserCreatecontentGoalsInput | string[]
   defaultTone?: string | null
   defaultPlatforms?: Prisma.UserCreatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: string | null
+  ayrshareRefId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -605,6 +639,8 @@ export type UserUpdateManyMutationInput = {
   contentGoals?: Prisma.UserUpdatecontentGoalsInput | string[]
   defaultTone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   defaultPlatforms?: Prisma.UserUpdatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ayrshareRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -626,6 +662,8 @@ export type UserUncheckedUpdateManyInput = {
   contentGoals?: Prisma.UserUpdatecontentGoalsInput | string[]
   defaultTone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   defaultPlatforms?: Prisma.UserUpdatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ayrshareRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -655,6 +693,8 @@ export type UserCountOrderByAggregateInput = {
   contentGoals?: Prisma.SortOrder
   defaultTone?: Prisma.SortOrder
   defaultPlatforms?: Prisma.SortOrder
+  ayrshareProfileKey?: Prisma.SortOrder
+  ayrshareRefId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -679,6 +719,8 @@ export type UserMaxOrderByAggregateInput = {
   companyName?: Prisma.SortOrder
   industry?: Prisma.SortOrder
   defaultTone?: Prisma.SortOrder
+  ayrshareProfileKey?: Prisma.SortOrder
+  ayrshareRefId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -698,6 +740,8 @@ export type UserMinOrderByAggregateInput = {
   companyName?: Prisma.SortOrder
   industry?: Prisma.SortOrder
   defaultTone?: Prisma.SortOrder
+  ayrshareProfileKey?: Prisma.SortOrder
+  ayrshareRefId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -926,6 +970,8 @@ export type UserCreateWithoutBrandVoiceInput = {
   contentGoals?: Prisma.UserCreatecontentGoalsInput | string[]
   defaultTone?: string | null
   defaultPlatforms?: Prisma.UserCreatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: string | null
+  ayrshareRefId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
@@ -956,6 +1002,8 @@ export type UserUncheckedCreateWithoutBrandVoiceInput = {
   contentGoals?: Prisma.UserCreatecontentGoalsInput | string[]
   defaultTone?: string | null
   defaultPlatforms?: Prisma.UserCreatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: string | null
+  ayrshareRefId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
@@ -1002,6 +1050,8 @@ export type UserUpdateWithoutBrandVoiceInput = {
   contentGoals?: Prisma.UserUpdatecontentGoalsInput | string[]
   defaultTone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   defaultPlatforms?: Prisma.UserUpdatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ayrshareRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
@@ -1032,6 +1082,8 @@ export type UserUncheckedUpdateWithoutBrandVoiceInput = {
   contentGoals?: Prisma.UserUpdatecontentGoalsInput | string[]
   defaultTone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   defaultPlatforms?: Prisma.UserUpdatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ayrshareRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -1062,6 +1114,8 @@ export type UserCreateWithoutAccountsInput = {
   contentGoals?: Prisma.UserCreatecontentGoalsInput | string[]
   defaultTone?: string | null
   defaultPlatforms?: Prisma.UserCreatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: string | null
+  ayrshareRefId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
@@ -1092,6 +1146,8 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   contentGoals?: Prisma.UserCreatecontentGoalsInput | string[]
   defaultTone?: string | null
   defaultPlatforms?: Prisma.UserCreatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: string | null
+  ayrshareRefId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
@@ -1138,6 +1194,8 @@ export type UserUpdateWithoutAccountsInput = {
   contentGoals?: Prisma.UserUpdatecontentGoalsInput | string[]
   defaultTone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   defaultPlatforms?: Prisma.UserUpdatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ayrshareRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
@@ -1168,6 +1226,8 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   contentGoals?: Prisma.UserUpdatecontentGoalsInput | string[]
   defaultTone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   defaultPlatforms?: Prisma.UserUpdatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ayrshareRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -1198,6 +1258,8 @@ export type UserCreateWithoutSessionsInput = {
   contentGoals?: Prisma.UserCreatecontentGoalsInput | string[]
   defaultTone?: string | null
   defaultPlatforms?: Prisma.UserCreatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: string | null
+  ayrshareRefId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
@@ -1228,6 +1290,8 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   contentGoals?: Prisma.UserCreatecontentGoalsInput | string[]
   defaultTone?: string | null
   defaultPlatforms?: Prisma.UserCreatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: string | null
+  ayrshareRefId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
@@ -1274,6 +1338,8 @@ export type UserUpdateWithoutSessionsInput = {
   contentGoals?: Prisma.UserUpdatecontentGoalsInput | string[]
   defaultTone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   defaultPlatforms?: Prisma.UserUpdatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ayrshareRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
@@ -1304,6 +1370,8 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   contentGoals?: Prisma.UserUpdatecontentGoalsInput | string[]
   defaultTone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   defaultPlatforms?: Prisma.UserUpdatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ayrshareRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -1334,6 +1402,8 @@ export type UserCreateWithoutContentsInput = {
   contentGoals?: Prisma.UserCreatecontentGoalsInput | string[]
   defaultTone?: string | null
   defaultPlatforms?: Prisma.UserCreatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: string | null
+  ayrshareRefId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
@@ -1364,6 +1434,8 @@ export type UserUncheckedCreateWithoutContentsInput = {
   contentGoals?: Prisma.UserCreatecontentGoalsInput | string[]
   defaultTone?: string | null
   defaultPlatforms?: Prisma.UserCreatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: string | null
+  ayrshareRefId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
@@ -1410,6 +1482,8 @@ export type UserUpdateWithoutContentsInput = {
   contentGoals?: Prisma.UserUpdatecontentGoalsInput | string[]
   defaultTone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   defaultPlatforms?: Prisma.UserUpdatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ayrshareRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
@@ -1440,6 +1514,8 @@ export type UserUncheckedUpdateWithoutContentsInput = {
   contentGoals?: Prisma.UserUpdatecontentGoalsInput | string[]
   defaultTone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   defaultPlatforms?: Prisma.UserUpdatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ayrshareRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -1470,6 +1546,8 @@ export type UserCreateWithoutRepurposedOutputsInput = {
   contentGoals?: Prisma.UserCreatecontentGoalsInput | string[]
   defaultTone?: string | null
   defaultPlatforms?: Prisma.UserCreatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: string | null
+  ayrshareRefId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
@@ -1500,6 +1578,8 @@ export type UserUncheckedCreateWithoutRepurposedOutputsInput = {
   contentGoals?: Prisma.UserCreatecontentGoalsInput | string[]
   defaultTone?: string | null
   defaultPlatforms?: Prisma.UserCreatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: string | null
+  ayrshareRefId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
@@ -1546,6 +1626,8 @@ export type UserUpdateWithoutRepurposedOutputsInput = {
   contentGoals?: Prisma.UserUpdatecontentGoalsInput | string[]
   defaultTone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   defaultPlatforms?: Prisma.UserUpdatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ayrshareRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
@@ -1576,6 +1658,8 @@ export type UserUncheckedUpdateWithoutRepurposedOutputsInput = {
   contentGoals?: Prisma.UserUpdatecontentGoalsInput | string[]
   defaultTone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   defaultPlatforms?: Prisma.UserUpdatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ayrshareRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -1606,6 +1690,8 @@ export type UserCreateWithoutCreditTransactionsInput = {
   contentGoals?: Prisma.UserCreatecontentGoalsInput | string[]
   defaultTone?: string | null
   defaultPlatforms?: Prisma.UserCreatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: string | null
+  ayrshareRefId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
@@ -1636,6 +1722,8 @@ export type UserUncheckedCreateWithoutCreditTransactionsInput = {
   contentGoals?: Prisma.UserCreatecontentGoalsInput | string[]
   defaultTone?: string | null
   defaultPlatforms?: Prisma.UserCreatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: string | null
+  ayrshareRefId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
@@ -1682,6 +1770,8 @@ export type UserUpdateWithoutCreditTransactionsInput = {
   contentGoals?: Prisma.UserUpdatecontentGoalsInput | string[]
   defaultTone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   defaultPlatforms?: Prisma.UserUpdatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ayrshareRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
@@ -1712,6 +1802,8 @@ export type UserUncheckedUpdateWithoutCreditTransactionsInput = {
   contentGoals?: Prisma.UserUpdatecontentGoalsInput | string[]
   defaultTone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   defaultPlatforms?: Prisma.UserUpdatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ayrshareRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -1742,6 +1834,8 @@ export type UserCreateWithoutSubscriptionInput = {
   contentGoals?: Prisma.UserCreatecontentGoalsInput | string[]
   defaultTone?: string | null
   defaultPlatforms?: Prisma.UserCreatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: string | null
+  ayrshareRefId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
@@ -1772,6 +1866,8 @@ export type UserUncheckedCreateWithoutSubscriptionInput = {
   contentGoals?: Prisma.UserCreatecontentGoalsInput | string[]
   defaultTone?: string | null
   defaultPlatforms?: Prisma.UserCreatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: string | null
+  ayrshareRefId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
@@ -1818,6 +1914,8 @@ export type UserUpdateWithoutSubscriptionInput = {
   contentGoals?: Prisma.UserUpdatecontentGoalsInput | string[]
   defaultTone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   defaultPlatforms?: Prisma.UserUpdatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ayrshareRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
@@ -1848,6 +1946,8 @@ export type UserUncheckedUpdateWithoutSubscriptionInput = {
   contentGoals?: Prisma.UserUpdatecontentGoalsInput | string[]
   defaultTone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   defaultPlatforms?: Prisma.UserUpdatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ayrshareRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -1878,6 +1978,8 @@ export type UserCreateWithoutUsageLogsInput = {
   contentGoals?: Prisma.UserCreatecontentGoalsInput | string[]
   defaultTone?: string | null
   defaultPlatforms?: Prisma.UserCreatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: string | null
+  ayrshareRefId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
@@ -1908,6 +2010,8 @@ export type UserUncheckedCreateWithoutUsageLogsInput = {
   contentGoals?: Prisma.UserCreatecontentGoalsInput | string[]
   defaultTone?: string | null
   defaultPlatforms?: Prisma.UserCreatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: string | null
+  ayrshareRefId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
@@ -1954,6 +2058,8 @@ export type UserUpdateWithoutUsageLogsInput = {
   contentGoals?: Prisma.UserUpdatecontentGoalsInput | string[]
   defaultTone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   defaultPlatforms?: Prisma.UserUpdatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ayrshareRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
@@ -1984,6 +2090,8 @@ export type UserUncheckedUpdateWithoutUsageLogsInput = {
   contentGoals?: Prisma.UserUpdatecontentGoalsInput | string[]
   defaultTone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   defaultPlatforms?: Prisma.UserUpdatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ayrshareRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -2014,6 +2122,8 @@ export type UserCreateWithoutMonetizationProjectsInput = {
   contentGoals?: Prisma.UserCreatecontentGoalsInput | string[]
   defaultTone?: string | null
   defaultPlatforms?: Prisma.UserCreatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: string | null
+  ayrshareRefId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
@@ -2044,6 +2154,8 @@ export type UserUncheckedCreateWithoutMonetizationProjectsInput = {
   contentGoals?: Prisma.UserCreatecontentGoalsInput | string[]
   defaultTone?: string | null
   defaultPlatforms?: Prisma.UserCreatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: string | null
+  ayrshareRefId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
@@ -2090,6 +2202,8 @@ export type UserUpdateWithoutMonetizationProjectsInput = {
   contentGoals?: Prisma.UserUpdatecontentGoalsInput | string[]
   defaultTone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   defaultPlatforms?: Prisma.UserUpdatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ayrshareRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
@@ -2120,6 +2234,8 @@ export type UserUncheckedUpdateWithoutMonetizationProjectsInput = {
   contentGoals?: Prisma.UserUpdatecontentGoalsInput | string[]
   defaultTone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   defaultPlatforms?: Prisma.UserUpdatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ayrshareRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -2150,6 +2266,8 @@ export type UserCreateWithoutScheduledPostsInput = {
   contentGoals?: Prisma.UserCreatecontentGoalsInput | string[]
   defaultTone?: string | null
   defaultPlatforms?: Prisma.UserCreatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: string | null
+  ayrshareRefId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
@@ -2180,6 +2298,8 @@ export type UserUncheckedCreateWithoutScheduledPostsInput = {
   contentGoals?: Prisma.UserCreatecontentGoalsInput | string[]
   defaultTone?: string | null
   defaultPlatforms?: Prisma.UserCreatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: string | null
+  ayrshareRefId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
@@ -2226,6 +2346,8 @@ export type UserUpdateWithoutScheduledPostsInput = {
   contentGoals?: Prisma.UserUpdatecontentGoalsInput | string[]
   defaultTone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   defaultPlatforms?: Prisma.UserUpdatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ayrshareRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
@@ -2256,6 +2378,8 @@ export type UserUncheckedUpdateWithoutScheduledPostsInput = {
   contentGoals?: Prisma.UserUpdatecontentGoalsInput | string[]
   defaultTone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   defaultPlatforms?: Prisma.UserUpdatedefaultPlatformsInput | string[]
+  ayrshareProfileKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ayrshareRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -2380,6 +2504,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   contentGoals?: boolean
   defaultTone?: boolean
   defaultPlatforms?: boolean
+  ayrshareProfileKey?: boolean
+  ayrshareRefId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
@@ -2412,6 +2538,8 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   contentGoals?: boolean
   defaultTone?: boolean
   defaultPlatforms?: boolean
+  ayrshareProfileKey?: boolean
+  ayrshareRefId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["user"]>
@@ -2433,6 +2561,8 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   contentGoals?: boolean
   defaultTone?: boolean
   defaultPlatforms?: boolean
+  ayrshareProfileKey?: boolean
+  ayrshareRefId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["user"]>
@@ -2454,11 +2584,13 @@ export type UserSelectScalar = {
   contentGoals?: boolean
   defaultTone?: boolean
   defaultPlatforms?: boolean
+  ayrshareProfileKey?: boolean
+  ayrshareRefId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image" | "password" | "credits" | "plan" | "lemonSqueezyCustomerId" | "onboardingCompleted" | "onboardingStep" | "companyName" | "industry" | "contentGoals" | "defaultTone" | "defaultPlatforms" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image" | "password" | "credits" | "plan" | "lemonSqueezyCustomerId" | "onboardingCompleted" | "onboardingStep" | "companyName" | "industry" | "contentGoals" | "defaultTone" | "defaultPlatforms" | "ayrshareProfileKey" | "ayrshareRefId" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
@@ -2506,6 +2638,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     contentGoals: string[]
     defaultTone: string | null
     defaultPlatforms: string[]
+    ayrshareProfileKey: string | null
+    ayrshareRefId: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["user"]>
@@ -2957,6 +3091,8 @@ export interface UserFieldRefs {
   readonly contentGoals: Prisma.FieldRef<"User", 'String[]'>
   readonly defaultTone: Prisma.FieldRef<"User", 'String'>
   readonly defaultPlatforms: Prisma.FieldRef<"User", 'String[]'>
+  readonly ayrshareProfileKey: Prisma.FieldRef<"User", 'String'>
+  readonly ayrshareRefId: Prisma.FieldRef<"User", 'String'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
 }

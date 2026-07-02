@@ -118,6 +118,8 @@ model User {
   contentGoals        String[]  @default([])
   defaultTone         String?
   defaultPlatforms    String[]  @default([])
+  ayrshareProfileKey  String?   @unique
+  ayrshareRefId       String?
   createdAt           DateTime  @default(now())
   updatedAt           DateTime  @updatedAt
 
@@ -333,18 +335,20 @@ model MonetizationAsset {
 }
 
 model ScheduledPost {
-  id          String               @id @default(cuid())
-  userId      String
-  title       String
-  content     String               @db.Text
-  platform    String
-  scheduledAt DateTime
-  status      ScheduledPostStatus  @default(SCHEDULED)
-  outputId    String?
-  contentId   String?
-  notes       String?
-  createdAt   DateTime             @default(now())
-  updatedAt   DateTime             @updatedAt
+  id             String               @id @default(cuid())
+  userId         String
+  title          String
+  content        String               @db.Text
+  platform       String
+  scheduledAt    DateTime
+  status         ScheduledPostStatus  @default(SCHEDULED)
+  outputId       String?
+  contentId      String?
+  notes          String?
+  ayrsharePostId String?
+  publishError   String?
+  createdAt      DateTime             @default(now())
+  updatedAt      DateTime             @updatedAt
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 

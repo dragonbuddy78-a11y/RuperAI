@@ -1,12 +1,13 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { Suspense, useCallback, useEffect, useState } from "react";
 import { signOut } from "next-auth/react";
 import { toast } from "sonner";
 import { AlertTriangle, Check, Link2, Loader2, Save, Trash2 } from "lucide-react";
 
 import { OAuthButtons } from "@/components/auth/oauth-buttons";
 import { BrandVoiceSettings } from "@/components/settings/brand-voice-settings";
+import { SocialAccountsSettings } from "@/components/social/social-accounts-settings";
 import { Badge } from "@/components/ui/badge";
 
 import { Header } from "@/components/layout/header";
@@ -264,6 +265,11 @@ export default function SettingsPage() {
               )}
             </CardContent>
           </Card>
+
+          {/* Social publishing */}
+          <Suspense fallback={<Skeleton className="h-32 w-full" />}>
+            <SocialAccountsSettings />
+          </Suspense>
 
           {/* Brand Voice */}
           <BrandVoiceSettings />

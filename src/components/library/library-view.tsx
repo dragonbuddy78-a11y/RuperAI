@@ -19,6 +19,7 @@ import {
 import { toast } from "sonner";
 
 import { ScheduleDialog } from "@/components/calendar/schedule-dialog";
+import { PublishDialog } from "@/components/social/publish-dialog";
 import { OutputRenderer } from "@/components/studio/output-renderer";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -366,6 +367,13 @@ export function LibraryView() {
                           title={`${detail.title} — ${o.formatKey || o.format}`}
                           content={o.output}
                           platform={o.formatKey || o.format}
+                          outputId={o.id}
+                          contentId={detail.id}
+                        />
+                        <PublishDialog
+                          title={`${detail.title} — ${o.formatKey || o.format}`}
+                          content={o.output}
+                          format={o.formatKey || o.format}
                           outputId={o.id}
                           contentId={detail.id}
                         />

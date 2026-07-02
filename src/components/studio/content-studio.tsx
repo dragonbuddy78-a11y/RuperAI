@@ -24,6 +24,7 @@ import {
 import { toast } from "sonner";
 
 import { ScheduleDialog } from "@/components/calendar/schedule-dialog";
+import { PublishDialog } from "@/components/social/publish-dialog";
 import { AiChatEditor } from "@/components/studio/ai-chat-editor";
 import { OutputRenderer } from "@/components/studio/output-renderer";
 import { QualityPanel } from "@/components/studio/quality-panel";
@@ -1255,6 +1256,12 @@ export function ContentStudio() {
                             title={`${title || "Post"} — ${formatLabel(r.format)}`}
                             content={getOutputText(r.format)}
                             platform={r.format}
+                            contentId={contentId ?? undefined}
+                          />
+                          <PublishDialog
+                            title={`${title || "Post"} — ${formatLabel(r.format)}`}
+                            content={getOutputText(r.format)}
+                            format={r.format}
                             contentId={contentId ?? undefined}
                           />
                           {contentId && (
