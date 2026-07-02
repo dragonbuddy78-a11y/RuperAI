@@ -24,7 +24,7 @@ import {
 import { toast } from "sonner";
 
 import { ScheduleDialog } from "@/components/calendar/schedule-dialog";
-import { PublishDialog } from "@/components/social/publish-dialog";
+import { SharePostActions } from "@/components/social/share-post-actions";
 import { AiChatEditor } from "@/components/studio/ai-chat-editor";
 import { OutputRenderer } from "@/components/studio/output-renderer";
 import { QualityPanel } from "@/components/studio/quality-panel";
@@ -62,6 +62,7 @@ import {
   formatLabel,
   getFormatCredits,
 } from "@/lib/format-meta";
+import { buildExportPack, copyToClipboard, downloadFile } from "@/lib/share-utils";
 import { cn } from "@/lib/utils";
 import {
   CONTENT_FORMATS,
@@ -458,9 +459,27 @@ export function ContentStudio() {
     return editingOutput[format] ?? results.find((r) => r.format === format)?.output ?? "";
   }
 
-  async function copyOutput(format: string) {
-    await navigator.clipboard.writeText(getOutputText(format));
-    toast.success("Copied to clipboard");
+  async function copyAllOutputs() {
+    const pack = results
+      .map((r) => `## ${formatLabel(r.format)}\n\n${getOutputText(r.format).trim()}`)
+      .join("\n\n---\n\n");
+    await copyToClipboard(pack);
+    toast.success("Copied all outputs");
+  }
+
+  function exportAllOutputs() {
+    const outputs = results.map((r) => ({
+      format: r.format,
+      label: formatLabel(r.format),
+      content: getOutputText(r.format),
+    }));
+    const markdown = buildExportPack(title || "RepurAI Export", outputs);
+    const slug = (title || "export")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .slice(0, 40);
+    downloadFile(`repurai-${slug}.md`, markdown, "text/markdown;charset=utf-8");
+    toast.success("Export pack downloaded");
   }
 
   function downloadOutput(format: string) {
@@ -1127,7 +1146,29 @@ export function ContentStudio() {
                           : `${results.length} format${results.length !== 1 ? "s" : ""} ready`}
                     </p>
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex flex-wrap items-center gap-2">
+                    {!generating && results.length > 0 && (
+                      <>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={copyAllOutputs}
+                          className="gap-1.5"
+                        >
+                          <Copy className="h-3.5 w-3.5" />
+                          Copy all
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={exportAllOutputs}
+                          className="gap-1.5"
+                        >
+                          <Download className="h-3.5 w-3.5" />
+                          Export pack
+                        </Button>
+                      </>
+                    )}
                     {!generating && results.length > 1 && (
                       <Button
                         size="sm"
@@ -1206,14 +1247,10 @@ export function ContentStudio() {
                     {results.map((r) => (
                       <TabsContent key={r.format} value={r.format} className="mt-4">
                         <div className="mb-4 flex flex-wrap gap-2">
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            onClick={() => copyOutput(r.format)}
-                          >
-                            <Copy className="h-3.5 w-3.5" />
-                            Copy
-                          </Button>
+                          <SharePostActions
+                            content={getOutputText(r.format)}
+                            format={r.format}
+                          />
                           <Button
                             size="sm"
                             variant="outline"
@@ -1256,12 +1293,6 @@ export function ContentStudio() {
                             title={`${title || "Post"} — ${formatLabel(r.format)}`}
                             content={getOutputText(r.format)}
                             platform={r.format}
-                            contentId={contentId ?? undefined}
-                          />
-                          <PublishDialog
-                            title={`${title || "Post"} — ${formatLabel(r.format)}`}
-                            content={getOutputText(r.format)}
-                            format={r.format}
                             contentId={contentId ?? undefined}
                           />
                           {contentId && (

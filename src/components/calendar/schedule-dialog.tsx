@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { format } from "date-fns";
-import { CalendarPlus, Loader2 } from "lucide-react";
+import { Bell, CalendarPlus, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
@@ -19,6 +19,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { formatLabel } from "@/lib/format-meta";
+import { buildIcsCalendar, downloadFile } from "@/lib/share-utils";
 import type { ContentFormat } from "@/types";
 
 interface ScheduleDialogProps {
@@ -93,6 +94,26 @@ export function ScheduleDialog({
     }
   }
 
+  function downloadReminder() {
+    const start = new Date(scheduledAt);
+    const ics = buildIcsCalendar([
+      {
+        uid: `repurai-${Date.now()}@repurai.app`,
+        title: title.trim() || defaultTitle,
+        description: `${platformLabel} post\n\n${content}`,
+        start,
+      },
+    ]);
+    const slug = (title.trim() || "post")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .slice(0, 40);
+    downloadFile(`repurai-reminder-${slug}.ics`, ics, "text/calendar;charset=utf-8");
+    toast.success("Reminder downloaded", {
+      description: "Open the .ics file to add to your phone calendar",
+    });
+  }
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
@@ -107,7 +128,8 @@ export function ScheduleDialog({
         <DialogHeader>
           <DialogTitle>Schedule to Calendar</DialogTitle>
           <DialogDescription>
-            Plan when to publish this {platformLabel} post.
+            Plan when to post this {platformLabel} content. Copy and paste
+            manually when your reminder fires — no paid APIs required.
           </DialogDescription>
         </DialogHeader>
         <div className="space-y-4 py-2">
@@ -145,7 +167,17 @@ export function ScheduleDialog({
             <p className="line-clamp-4 text-sm">{content}</p>
           </div>
         </div>
-        <DialogFooter>
+        <DialogFooter className="flex-col gap-2 sm:flex-row">
+          <Button
+            type="button"
+            variant="secondary"
+            onClick={downloadReminder}
+            disabled={!title.trim()}
+            className="gap-1.5 sm:mr-auto"
+          >
+            <Bell className="h-4 w-4" />
+            Download reminder (.ics)
+          </Button>
           <Button variant="outline" onClick={() => setOpen(false)}>
             Cancel
           </Button>

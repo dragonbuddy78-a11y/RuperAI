@@ -19,7 +19,7 @@ import {
 import { toast } from "sonner";
 
 import { ScheduleDialog } from "@/components/calendar/schedule-dialog";
-import { PublishDialog } from "@/components/social/publish-dialog";
+import { SharePostActions } from "@/components/social/share-post-actions";
 import { OutputRenderer } from "@/components/studio/output-renderer";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -157,11 +157,6 @@ export function LibraryView() {
     const params = new URLSearchParams(searchParams.toString());
     params.delete("open");
     router.replace(`/library${params.toString() ? `?${params}` : ""}`);
-  }
-
-  async function copyOutput(text: string) {
-    await navigator.clipboard.writeText(text);
-    toast.success("Copied to clipboard");
   }
 
   function handleRerun(id: string) {
@@ -355,14 +350,10 @@ export function LibraryView() {
                       className="mt-0 pb-6"
                     >
                       <div className="mb-3 flex flex-wrap gap-2">
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          onClick={() => copyOutput(o.output)}
-                        >
-                          <Copy className="h-3.5 w-3.5" />
-                          Copy
-                        </Button>
+                        <SharePostActions
+                          content={o.output}
+                          format={o.formatKey || o.format}
+                        />
                         <ScheduleDialog
                           title={`${detail.title} — ${o.formatKey || o.format}`}
                           content={o.output}
@@ -370,13 +361,7 @@ export function LibraryView() {
                           outputId={o.id}
                           contentId={detail.id}
                         />
-                        <PublishDialog
-                          title={`${detail.title} — ${o.formatKey || o.format}`}
-                          content={o.output}
-                          format={o.formatKey || o.format}
-                          outputId={o.id}
-                          contentId={detail.id}
-                        />
+
                       </div>
                       <OutputRenderer
                         format={o.formatKey || o.format}

@@ -19,7 +19,7 @@ import {
   Check,
   ChevronLeft,
   ChevronRight,
-  Copy,
+  Download,
   Loader2,
   Trash2,
   X,
@@ -38,6 +38,8 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Skeleton } from "@/components/ui/skeleton";
 import { formatLabel } from "@/lib/format-meta";
+import { buildIcsCalendar, downloadFile } from "@/lib/share-utils";
+import { SharePostActions } from "@/components/social/share-post-actions";
 import { cn } from "@/lib/utils";
 import type { ContentFormat, ScheduledPostData } from "@/types";
 
@@ -147,6 +149,27 @@ export function ContentCalendar() {
     }
   }
 
+  function exportMonthReminders() {
+    if (posts.length === 0) {
+      toast.error("No scheduled posts this month");
+      return;
+    }
+    const ics = buildIcsCalendar(
+      posts.map((post) => ({
+        uid: `repurai-${post.id}@repurai.app`,
+        title: post.title,
+        description: `${platformLabel(post.platform)}\n\n${post.content}`,
+        start: new Date(post.scheduledAt),
+      })),
+    );
+    downloadFile(
+      `repurai-calendar-${monthKey}.ics`,
+      ics,
+      "text/calendar;charset=utf-8",
+    );
+    toast.success("Calendar reminders downloaded");
+  }
+
   return (
     <div className="grid gap-6 lg:grid-cols-[1fr_340px]">
       <Card className="border-border/60">
@@ -176,6 +199,16 @@ export function ContentCalendar() {
               }}
             >
               Today
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={exportMonthReminders}
+              disabled={posts.length === 0}
+              className="gap-1.5"
+            >
+              <Download className="h-3.5 w-3.5" />
+              Export .ics
             </Button>
             <Button
               variant="outline"
@@ -332,16 +365,32 @@ export function ContentCalendar() {
                 {selectedPost.content}
               </p>
               <div className="flex flex-wrap gap-2">
+                <SharePostActions
+                  content={selectedPost.content}
+                  format={selectedPost.platform}
+                />
                 <Button
                   size="sm"
                   variant="outline"
                   onClick={() => {
-                    navigator.clipboard.writeText(selectedPost.content);
-                    toast.success("Copied");
+                    const ics = buildIcsCalendar([
+                      {
+                        uid: `repurai-${selectedPost.id}@repurai.app`,
+                        title: selectedPost.title,
+                        description: `${platformLabel(selectedPost.platform)}\n\n${selectedPost.content}`,
+                        start: new Date(selectedPost.scheduledAt),
+                      },
+                    ]);
+                    downloadFile(
+                      `repurai-reminder-${selectedPost.id}.ics`,
+                      ics,
+                      "text/calendar;charset=utf-8",
+                    );
+                    toast.success("Reminder downloaded");
                   }}
                 >
-                  <Copy className="h-3.5 w-3.5" />
-                  Copy
+                  <Download className="h-3.5 w-3.5" />
+                  .ics
                 </Button>
                 {selectedPost.status === "SCHEDULED" && (
                   <Button
